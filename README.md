@@ -10,3 +10,5 @@ https://code.plus/course/51
 
 
 - 2일차~3일차 : ACM Draft 풀이 성공 (link : https://www.acmicpc.net/problem/1005)
+- 3일차~4일차 : Fly me to the alpha centauri 풀이 성공 (link : https://www.acmicpc.net/problem/1013)
+- 
