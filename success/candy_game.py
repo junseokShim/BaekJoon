@@ -48,7 +48,7 @@ def row_str():
     return l
 
 
-## bfs
+## bfs 사용
 max_len = 0
 
 while q:
