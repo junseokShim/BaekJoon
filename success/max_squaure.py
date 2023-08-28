@@ -23,5 +23,4 @@ for i in range(1, N+1):
                 
             dp[i][j] = int(math.pow(math.sqrt(dp[i-1][j-1])+1-penalty_num, 2))
 
-
 print(max(map(max,dp)))

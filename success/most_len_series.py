@@ -7,6 +7,7 @@ arr = [int(num) for num in input().split(" ")]
 dp = [1]*(N)
 
 for i in range(1, len(arr)):
+    
     lst = [dp[j] for j in range(len(arr[:i])) if arr[i] > arr[j]]
 
     if len(lst) == 0:
