@@ -23,8 +23,6 @@ for key in alpha_weight_dict:
     alpha_to_num_dict[key[0]] = num
     num -= 1
 
-print(alpha_to_num_dict)
-
 for word in words:
     s = ''
     for i in range(len(word)):
