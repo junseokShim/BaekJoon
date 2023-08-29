@@ -1,39 +1,69 @@
 N = int(input())
 series = list(map(int, input().split(" ")))
-add, sub, mul, div = list(map(int, input().split(" ")))
+operators = list(map(int, input().split(" ")))
 
-max_num = -1000000000
-min_num = 10000000000
+ops = ""
+for idx in range(len(operators)):
 
-def dfs(i, now):
-    global max_num, min_num, add, sub, mul, div
+    if idx == 0: ops += "+"*operators[idx]
+    elif idx == 1: ops += "-"*operators[idx]
+    elif idx == 2: ops += "*"*operators[idx]
+    elif idx == 3: ops += "/"*operators[idx]
 
-    if i == N:
-        max_num = max(max_num, now)
-        min_num = min(min_num, now)
+ops = list(ops)
 
-    else:
-        if add > 0:
-            add -= 1
-            dfs(i+1, now + series[i])
-            add += 1
+max_num = -1*float("inf")
+min_num = float("inf")
 
-        if sub > 0:
-            sub -= 1
-            dfs(i+1, now - series[i])
-            sub += 1
-        
-        if mul > 0:
-            mul -= 1
-            dfs(i+1, now*series[i])
-            mul += 1
+visited_max = [0 for _ in range(N)]
+visited_min = [0 for _ in range(N)]
 
-        if div > 0:
-            div -= 1
-            dfs(i+1, int(now/series[i]))
-            div += 1
+def max_dfs(num, lst):
 
-dfs(1, series[0])
+    global max_num
+
+    if len(lst) == N-1:
+        max_num = max(num, max_num)
+        return
+
+    for i, val in enumerate(ops):
+        if visited_max[i] == 1: continue
+        lst.append(val)
+        visited_max[i] = 1
+
+        if val == "+":      max_dfs( num+series[len(lst)], lst)
+        elif val == "-":    max_dfs( num-series[len(lst)], lst)
+        elif val == "*":    max_dfs( num*series[len(lst)], lst)
+        else:               max_dfs(int(num/series[len(lst)]), lst)
+
+        lst.pop()
+
+        visited_max[i] = 0
+
+
+def min_dfs(num, lst):
+    
+    global min_num
+
+    if len(lst) == N-1:
+        min_num = min(num, min_num)
+        return
+
+    for i, val in enumerate(ops):
+        if visited_min[i] == 1: continue
+        lst.append(val)
+        visited_min[i] = 1
+
+        if val == "+":      min_dfs( num+series[len(lst)], lst)
+        elif val == "-":    min_dfs( num-series[len(lst)], lst)
+        elif val == "*":    min_dfs( num*series[len(lst)], lst)
+        else:               min_dfs(int(num/series[len(lst)]), lst)
+
+        lst.pop()
+        visited_min[i] = 0
+
+max_dfs(series[0], [])
+min_dfs(series[0], [])
 
 print(max_num)
 print(min_num)
