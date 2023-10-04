@@ -21,14 +21,4 @@ def dfs(idx, arr):
 for r in range(1, N+1):
     dfs(-1, [])
 
-# for r in range(1, N+1):
-
-#     r = 1
-#     result = [0 for _ in range(r)]
-#     print(result)
-#     dfs(0, [])
-
 print(cnt)
-
-
-    

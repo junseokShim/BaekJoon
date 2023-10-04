@@ -24,5 +24,4 @@ for team_a in combinations(man, int(N/2)):
             score_b += S[team_b[j]][team_b[i]]
     min_diff = min(abs(score_b-score_a), min_diff)
 
-        
 print(min_diff)
